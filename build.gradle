@@ -1,0 +1,38 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+}
+
+group = 'devholic.library'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+
+            groupId = 'devholic.library'
+            artifactId = 'sample'
+            version = '1.0-SNAPSHOT'
+        }
+    }
+    repositories {
+        maven {
+            name = 'MavenCentral'
+            url = uri("https://repo.maven.apache.org/maven2")
+        }
+    }
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}
