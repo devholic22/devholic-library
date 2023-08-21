@@ -16,7 +16,7 @@ allprojects {
 ### 2. Add the dependency
 ```groovy
 dependencies {
-    implementation 'com.github.devholic22:discordbot-library:tag' // tag means the latest tag
+    implementation 'com.github.devholic22:devholic-library:Tag' // tag means the latest tag
 }
 ```
 ## library lists
