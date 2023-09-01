@@ -47,3 +47,20 @@ public static void main(String[] args) throws IOException { // if access-token h
 }
 ```
 ![스크린샷 2023-09-01 오후 4 26 18](https://github.com/devholic22/devholic-library/assets/90085154/74ff2bdf-e9af-48fe-99d8-502d299a8ef2)
+
+### Get Github user information function (OAuth2)
+If you have Access-Token about Github Server, you can get Github user information (HashMap) via this library.  
+when you want "bio" value, use `result.get(key).split(" ")` (because bio key has many values)
+#### Example
+```java
+import java.util.Map;
+import java.io.IOException;
+import devholic.library.oauth2.github.GithubTokenAgent;
+public static void main(String[] args) throws IOException { // if access-token has problem, IOException occur.
+    Map<String, String> result = GithubTokenAgent.getUserResource("ACCESS_TOKEN");
+    for (String key : result.keySet()) {
+        System.out.println(key + ": " + result.get(key));
+    }
+}
+```
+![스크린샷 2023-09-02 오전 1 27 12](https://github.com/devholic22/devholic-library/assets/90085154/4e6181e9-d18f-41dd-9f49-7930d8cf8b3a)
