@@ -39,7 +39,7 @@ public class TokenAgent {
             if (each.length <= 2)
                 continue;
             String key = each[2];
-            String value = each[3];
+            String value = each[3].replace(",", "");
             info.put(key, value);
         }
         return info;
