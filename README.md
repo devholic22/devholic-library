@@ -32,3 +32,18 @@ public static void main(String[] args) throws IOException {
 }
 ```
 <img width="673" alt="스크린샷 2023-08-22 오전 12 54 36" src="https://github.com/devholic22/devholic-library/assets/90085154/7fb318eb-b572-40df-9af2-e4bd90a72987">
+
+### Get Google user information function (OAuth2)
+If you have Access-Token about Google Server, you can get Google user information (HashMap) via this library.
+#### Example
+```java
+import java.io.IOException;
+import devholic.library.google.TokenAgent;
+public static void main(String[] args) throws IOException { // if access-token has problem, IOException occur.
+    Map<String, String> userResource = TokenAgent.getUserResource("ACCESS_TOKEN");
+    for (String key : userResource.keySet()) {
+        System.out.println(key + ": " + userResource.get(key));
+    }
+}
+```
+![스크린샷 2023-09-01 오후 4 26 18](https://github.com/devholic22/devholic-library/assets/90085154/74ff2bdf-e9af-48fe-99d8-502d299a8ef2)
