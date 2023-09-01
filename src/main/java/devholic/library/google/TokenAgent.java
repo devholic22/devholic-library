@@ -38,8 +38,10 @@ public class TokenAgent {
             }
             if (each.length <= 2)
                 continue;
-            String key = each[2];
+            String key = each[2].replace(":", "");
+            key = key.replace("\"", "");
             String value = each[3].replace(",", "");
+            value = value.replace("\"", "");
             info.put(key, value);
         }
         return info;
