@@ -10,9 +10,9 @@ import java.util.Map;
 
 public class TokenAgent {
 
-    private final String RESOURCE_URL = "https://www.googleapis.com/oauth2/v2/userinfo";
+    private static final String RESOURCE_URL = "https://www.googleapis.com/oauth2/v2/userinfo";
 
-    public Map<String, String> getUserResource(String accessToken) throws IOException {
+    public static Map<String, String> getUserResource(String accessToken) throws IOException {
         URL url = new URL(RESOURCE_URL);
 
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
