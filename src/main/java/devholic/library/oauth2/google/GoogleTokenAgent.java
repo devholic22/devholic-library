@@ -1,14 +1,17 @@
-package devholic.library.google;
+package devholic.library.oauth2.google;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.ProtocolException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TokenAgent {
+import static devholic.library.oauth2.CommonMethod.parseConnectionToBufferedReader;
+import static devholic.library.oauth2.CommonMethod.validateConnectionResponseStatus;
+
+public class GoogleTokenAgent {
 
     private static final String RESOURCE_URL = "https://www.googleapis.com/oauth2/v2/userinfo";
 
@@ -16,15 +19,11 @@ public class TokenAgent {
         URL url = new URL(RESOURCE_URL);
 
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        connection.setRequestMethod("GET");
-        connection.setRequestProperty("Authorization", "Bearer " + accessToken);
+        setConnectionProperties(accessToken, connection);
 
-        int responseCode = connection.getResponseCode();
-        if (responseCode != 200) {
-            throw new IOException("Failed to get user resource: " + responseCode);
-        }
+        validateConnectionResponseStatus(connection);
 
-        BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+        BufferedReader br = parseConnectionToBufferedReader(connection);
         Map<String, String> info = new HashMap<>();
         while (true) {
             String row = br.readLine();
@@ -45,5 +44,13 @@ public class TokenAgent {
             info.put(key, value);
         }
         return info;
+    }
+
+    private static void setConnectionProperties(String accessToken, HttpURLConnection connection)
+            throws ProtocolException {
+        final String AUTHORIZATION_TOKEN = "Bearer " + accessToken;
+
+        connection.setRequestMethod("GET");
+        connection.setRequestProperty("Authorization", AUTHORIZATION_TOKEN);
     }
 }
