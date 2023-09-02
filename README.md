@@ -64,3 +64,16 @@ public static void main(String[] args) throws IOException { // if access-token h
 }
 ```
 <img width="1169" alt="스크린샷 2023-09-02 오전 1 35 22" src="https://github.com/devholic22/devholic-library/assets/90085154/5ad9e264-2ac5-40b1-b63e-7e9c90a5f471">
+
+### Get Apple user email information function (OAuth2)
+If you have id_token about Apple Server, you can get Apple user email information via this library.  
+In this library, client used fragment way.
+#### Example
+```java
+import devholic.library.oauth2.apple.AppleTokenAgent;
+public static void main(String[] args) throws IOException {
+    String email = AppleTokenAgent.getUserResource("appleToken");
+    System.out.println(email);
+}
+```
+<img width="278" alt="스크린샷 2023-09-03 오전 1 50 58" src="https://github.com/devholic22/devholic-library/assets/90085154/8ad36059-7a2f-4a97-be04-9916add03135">
