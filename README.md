@@ -38,9 +38,9 @@ If you have Access-Token about Google Server, you can get Google user informatio
 #### Example
 ```java
 import java.io.IOException;
-import devholic.library.google.TokenAgent;
+import devholic.library.oauth2.google.GoogleTokenAgent;
 public static void main(String[] args) throws IOException { // if access-token has problem, IOException occur.
-    Map<String, String> userResource = TokenAgent.getUserResource("ACCESS_TOKEN");
+    Map<String, String> userResource = GoogleTokenAgent.getUserResource("ACCESS_TOKEN");
     for (String key : userResource.keySet()) {
         System.out.println(key + ": " + userResource.get(key));
     }
